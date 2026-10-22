@@ -170,6 +170,7 @@ public class Main {
             System.out.println("There was an error on wait's method" + e.getMessage());
         }
     }
+
     public static void showHowToPlay() {
         System.out.println();
         System.out.println("════ HOW TO PLAY ════");
