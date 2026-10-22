@@ -51,7 +51,7 @@ The values live in the `ROUND_CONFIG` array, so difficulty can be tweaked withou
 - [ ] Items (magnifying glass, handcuffs, saw, beer...), each one in its own class - Not yet, but soon
 - [ ] Save cash to a file so it persists between sessions - Not yet, but soon
 - [ ] Smarter Computer decisions based on the remaining shells - Not yet, but soon
-- [ ] Split the game into classes (`Game`, `Shotgun`, `Player`)
+- [ ] Split the game into classes (`Game`, `Shotgun`, `Player`) Not yet, but soon
 
 ## Author
 
