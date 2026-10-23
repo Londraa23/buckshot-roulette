@@ -60,10 +60,11 @@ public class Main {
 
             if (round == 3) {
                 double cashWon = ran.nextDouble(200, 1000);
+                System.out.println(" ");
                 System.out.println("════ YOU WON THE GAME ════");
                 System.out.println();
                 System.out.println("Woo oho! Congratulations.");
-                System.out.println("You won another round and also $" + cashWon + " in cash.");
+                System.out.printf("You won another round and also $ %.2f in cash.%n", cashWon);
                 cash += cashWon;
                 round++;
             } else {
