@@ -84,7 +84,7 @@ public class Main {
     }
     public static void generateChamber(ArrayList<Boolean> chamber) {
         chamber.clear();
-        //TODO esta mal
+
         int lives = ran.nextInt(0, ROUND_CONFIG[round - 1][1]);
         int blanks = ROUND_CONFIG[round - 1][1] - lives;
 
