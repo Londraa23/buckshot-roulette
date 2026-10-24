@@ -1,3 +1,6 @@
+import Managers.EconomyManager;
+import Utils.TimeUtils;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -6,7 +9,6 @@ import java.util.Scanner;
 public class Main {
 
     public static int round = 1;
-    public static double cash;
     public static Scanner scanner = new Scanner(System.in);
     public static ArrayList<Boolean> chamber = new ArrayList();
     public static int[][] ROUND_CONFIG = {
@@ -20,6 +22,9 @@ public class Main {
     public static Random ran = new Random();
 
     public static void main(String[] args){
+
+        //Create cash file
+        EconomyManager.initialize();
 
         mainMenu();
 
@@ -45,7 +50,7 @@ public class Main {
                     System.out.println();
                     System.out.println("════ COMPUTERS TURN ════");
                     System.out.println("Making a decision...");
-                    wait(3000);
+                    TimeUtils.wait(3000);
                     shoot(computersShootingChoice());
                 }
             }
@@ -64,8 +69,8 @@ public class Main {
                 System.out.println("════ YOU WON THE GAME ════");
                 System.out.println();
                 System.out.println("Woo oho! Congratulations.");
-                System.out.printf("You won another round and also $ %.2f in cash.%n", cashWon);
-                cash += cashWon;
+                System.out.printf("You won another round and also $%.2f in cash.%n", cashWon);
+                EconomyManager.addCash(cashWon);
                 round++;
             } else {
                 System.out.println();
@@ -102,7 +107,6 @@ public class Main {
             }
 
             int option = scanner.nextInt();
-
             switch (option) {
                 case 1 -> { return true; }
                 case 2 -> { return false; }
@@ -117,7 +121,7 @@ public class Main {
         if(chamber.isEmpty()){
             generateChamber(chamber);
             System.out.println("Reloading the shootgun...");
-            wait(2000);
+            TimeUtils.wait(2000);
         }
 
         boolean live = chamber.removeFirst();
@@ -164,14 +168,6 @@ public class Main {
             }
         }
     }
-    public static void wait(int ms){
-        try{
-           Thread.sleep(ms);
-        } catch (InterruptedException e){
-            System.out.println("There was an error on wait's method" + e.getMessage());
-        }
-    }
-
     public static void showHowToPlay() {
         System.out.println();
         System.out.println("════ HOW TO PLAY ════");
@@ -197,7 +193,7 @@ public class Main {
             System.out.println("╔══════════════════════════════╗");
             System.out.println("║       BUCKSHOT ROULETTE      ║");
             System.out.println("╚══════════════════════════════╝");
-            System.out.println("You've got: $" + cash);
+            System.out.printf("You've got: $%.2f.%n", EconomyManager.getCash());
             System.out.println();
             System.out.println("1. Play");
             System.out.println("2. How to play");
