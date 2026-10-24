@@ -67,6 +67,4 @@ public class EconomyManager {
     public static double removeCash(double amount){
         return setCash(cash - amount);
     }
-
-
 }
