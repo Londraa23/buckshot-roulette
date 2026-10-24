@@ -1,6 +1,6 @@
-package Utils;
+package utils;
 
-public class TimeUtils {
+public class TimeUtil {
     public static void wait(int ms){
         try{
             Thread.sleep(ms);

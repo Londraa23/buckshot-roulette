@@ -1,5 +1,5 @@
-import Managers.EconomyManager;
-import Utils.TimeUtils;
+import managers.EconomyManager;
+import utils.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,11 +10,11 @@ public class Main {
 
     public static int round = 1;
     public static Scanner scanner = new Scanner(System.in);
-    public static ArrayList<Boolean> chamber = new ArrayList();
+    public static ArrayList<Boolean> chamber = new ArrayList<>();
     public static int[][] ROUND_CONFIG = {
-            {2, 4, 2}, // hearts, bullets and live rounds.
-            {4, 6, 3},
-            {5, 8, 4}
+            {2, 4}, // hearts, bullets
+            {4, 6},
+            {6, 8}
     };
     public static int playerHearts = ROUND_CONFIG[round - 1][0];
     public static int computerHearts = ROUND_CONFIG[round - 1][0];
@@ -50,7 +50,7 @@ public class Main {
                     System.out.println();
                     System.out.println("════ COMPUTERS TURN ════");
                     System.out.println("Making a decision...");
-                    TimeUtils.wait(3000);
+                    TimeUtil.wait(3000);
                     shoot(computersShootingChoice());
                 }
             }
@@ -84,11 +84,18 @@ public class Main {
     }
     public static void generateChamber(ArrayList<Boolean> chamber) {
         chamber.clear();
-        int pairs = ROUND_CONFIG[round - 1][2];
-        for (int i = 0; i < pairs; i++) {
+        //TODO esta mal
+        int lives = ran.nextInt(0, ROUND_CONFIG[round - 1][1]);
+        int blanks = ROUND_CONFIG[round - 1][1] - lives;
+
+        for (int i = 0; i < lives; i++) {
             chamber.add(true);
+        }
+        for (int i = 0; i < blanks; i++) {
             chamber.add(false);
         }
+        System.out.println("There are " + blanks + " blanks and " + lives + " lives");
+
         Collections.shuffle(chamber);
     }
     public static boolean playersShootingChoice() {
@@ -121,7 +128,7 @@ public class Main {
         if(chamber.isEmpty()){
             generateChamber(chamber);
             System.out.println("Reloading the shootgun...");
-            TimeUtils.wait(2000);
+            TimeUtil.wait(2000);
         }
 
         boolean live = chamber.removeFirst();

@@ -1,7 +1,6 @@
-package Managers;
+package managers;
 
-import Utils.TimeUtils;
-
+import utils.TimeUtil;
 import java.io.*;
 
 public class EconomyManager {
@@ -15,7 +14,7 @@ public class EconomyManager {
         if (!file.exists()) {
             saveCash(initialCash);
             System.out.println("Creating files...");
-            TimeUtils.wait(1000);
+            TimeUtil.wait(1000);
         }
 
         // Read file
@@ -37,9 +36,9 @@ public class EconomyManager {
             return;
         }
 
-        TimeUtils.wait(1000);
+        TimeUtil.wait(1000);
         System.out.println("The game has been successfully been set up. Enjoy!");
-        TimeUtils.wait(1000);
+        TimeUtil.wait(1000);
     }
 
     private static void saveCash(double value) {
